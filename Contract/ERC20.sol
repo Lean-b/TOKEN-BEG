@@ -64,14 +64,14 @@ contract ERC20 is IERC20 {
     }
 
     function transferFrom(
-        address sender,
+        address spender,
         address recipient,
         uint256 amount
     ) public  onlyOwner returns (bool) {
-        allowed[sender][msg.sender] -= amount;
-        balance[sender] -= amount;
+        allowed[spender][msg.sender] -= amount;
+        balance[spender] -= amount;
         balance[recipient] += amount;
-        emit Transfer(sender, recipient, amount);
+        emit Transfer(spender, recipient, amount);
         return true;
     }
 }
